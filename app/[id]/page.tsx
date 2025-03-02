@@ -2,13 +2,12 @@
 import { getOriginalUrl } from '@/lib/db';
 import { redirect } from 'next/navigation';
 
-interface RedirectPageProps {
-  params: {
-    id: string;
-  };
+// 適切なインターフェイスを定義
+interface PageParams {
+  id: string;
 }
 
-export default async function RedirectPage({ params }: RedirectPageProps) {
+export default async function RedirectPage({ params }: { params: PageParams }) {
   const { id } = params;
   
   // IDが数字であることを確認
