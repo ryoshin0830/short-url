@@ -3,7 +3,7 @@ import { getOriginalUrl } from '@/lib/db';
 import { redirect } from 'next/navigation';
 
 // TypeScriptの型チェックを緩和
-// @ts-expect-error
+// @ts-expect-error - Next.js 15の型定義の変更に対応するため
 export default async function RedirectPage({ params }) {
   const { id } = params;
   
