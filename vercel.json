@@ -1,0 +1,12 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/next"
+      }
+    ],
+    "env": {
+      "POSTGRES_URL": "your-postgres-url-will-be-set-in-vercel-dashboard"
+    }
+  }
