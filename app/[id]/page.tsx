@@ -3,7 +3,7 @@ import { getOriginalUrl } from '@/lib/db';
 import { redirect } from 'next/navigation';
 
 // TypeScriptの型チェックを緩和
-// @ts-ignore
+// @ts-expect-error
 export default async function RedirectPage({ params }) {
   const { id } = params;
   
