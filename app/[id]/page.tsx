@@ -5,7 +5,8 @@ import { redirect } from 'next/navigation';
 // TypeScriptの型チェックを緩和
 // @ts-expect-error - Next.js 15の型定義の変更に対応するため
 export default async function RedirectPage({ params }) {
-  const { id } = params;
+  // Next.js 15では params を await する必要がある
+  const { id } = await params;
   
   // IDが数字であることを確認
   if (!/^\d+$/.test(id)) {
