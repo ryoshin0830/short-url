@@ -17,6 +17,7 @@
 - アクセス統計の記録（訪問回数）
 - モダンで使いやすいユーザーインターフェース
 - レスポンシブデザイン
+- 外部アプリケーションから利用可能なREST API
 
 ## ローカル開発環境のセットアップ
 
@@ -161,6 +162,125 @@ export default async function RedirectPage({ params }) {
 3. 「短縮する」ボタンをクリック
 4. 生成された短いURLをコピーして使用
 
+## API仕様
+
+if.gyではREST APIを提供しており、外部アプリケーションからURL短縮機能を利用することができます。
+
+### エンドポイント
+
+#### URLの短縮
+
+```
+POST /api/shorten
+```
+
+**リクエストボディ (JSON):**
+
+```json
+{
+  "url": "https://example.com/very/long/url/that/needs/to/be/shortened"
+}
+```
+
+**成功時のレスポンス (200 OK):**
+
+```json
+{
+  "shortUrl": "https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app/123"
+}
+```
+
+**エラー時のレスポンス (400 Bad Request):**
+
+```json
+{
+  "error": "有効なURLを入力してください"
+}
+```
+
+**エラー時のレスポンス (500 Internal Server Error):**
+
+```json
+{
+  "error": "URL短縮中にエラーが発生しました"
+}
+```
+
+### APIの使用例
+
+#### cURLでの使用例
+
+```bash
+curl -X POST https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app/api/shorten \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://example.com/long/url"}'
+```
+
+#### JavaScriptでの使用例
+
+```javascript
+async function shortenUrl(url) {
+  try {
+    const response = await fetch('https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app/api/shorten', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url }),
+    });
+    
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || 'URL短縮に失敗しました');
+    }
+    
+    return data.shortUrl;
+  } catch (error) {
+    console.error('エラー:', error);
+    return null;
+  }
+}
+
+// 使用例
+shortenUrl('https://example.com/very/long/url')
+  .then(shortUrl => {
+    if (shortUrl) {
+      console.log('短縮URL:', shortUrl);
+    }
+  });
+```
+
+#### Pythonでの使用例
+
+```python
+import requests
+
+def shorten_url(url):
+    try:
+        response = requests.post(
+            'https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app/api/shorten',
+            json={'url': url}
+        )
+        response.raise_for_status()
+        return response.json()['shortUrl']
+    except requests.exceptions.RequestException as e:
+        print(f"エラー: {e}")
+        return None
+
+# 使用例
+short_url = shorten_url('https://example.com/very/long/url')
+if short_url:
+    print(f'短縮URL: {short_url}')
+```
+
+### 注意事項
+
+- APIリクエストには必ず有効なURLを含めてください
+- URLは `http://` または `https://` で始まる必要があります
+- 当サービスの利用規約に違反するコンテンツへのリンクは禁止されています
+- 過度な頻度でのAPIリクエストは制限される場合があります
+
 ## プロジェクト構造
 
 ```
@@ -187,7 +307,7 @@ if-gy/
 ## デモ
 
 デプロイされたアプリケーションは以下のURLでアクセスできます:
-- [https://if-6z2c4riu2-fyuneru0830s-projects.vercel.app](https://if-6z2c4riu2-fyuneru0830s-projects.vercel.app)
+- [https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app](https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app)
 
 ## ライセンス
 
