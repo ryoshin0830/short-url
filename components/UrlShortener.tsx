@@ -38,7 +38,7 @@ export default function UrlShortener() {
       if (error instanceof Error) {
         setError(error.message);
       } else {
-        setError('予期せぬエラーが発生しました');
+        setError('URL短縮中にエラーが発生しました');
       }
     } finally {
       setIsLoading(false);
