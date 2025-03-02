@@ -211,7 +211,7 @@ POST /api/shorten
 #### cURLでの使用例
 
 ```bash
-curl -X POST https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app/api/shorten \
+curl -X POST https://if.gy/api/shorten \
   -H "Content-Type: application/json" \
   -d '{"url":"https://example.com/long/url"}'
 ```
@@ -221,7 +221,7 @@ curl -X POST https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app/api/shorten \
 ```javascript
 async function shortenUrl(url) {
   try {
-    const response = await fetch('https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app/api/shorten', {
+    const response = await fetch('https://if.gy/api/shorten', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -259,7 +259,7 @@ import requests
 def shorten_url(url):
     try:
         response = requests.post(
-            'https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app/api/shorten',
+            'https://if.gy/api/shorten',
             json={'url': url}
         )
         response.raise_for_status()
@@ -307,7 +307,7 @@ if-gy/
 ## デモ
 
 デプロイされたアプリケーションは以下のURLでアクセスできます:
-- [https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app](https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app)
+- [https://if.gy](https://if.gy)
 
 ## ライセンス
 
