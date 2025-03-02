@@ -2,12 +2,15 @@
 import { getOriginalUrl } from '@/lib/db';
 import { redirect } from 'next/navigation';
 
-// 適切なインターフェイスを定義
-interface PageParams {
-  id: string;
-}
+// シンプルな型定義を使用
+type Props = {
+  params: {
+    id: string;
+  };
+  searchParams: Record<string, string | string[] | undefined>;
+};
 
-export default async function RedirectPage({ params }: { params: PageParams }) {
+export default async function RedirectPage({ params }: Props) {
   const { id } = params;
   
   // IDが数字であることを確認
