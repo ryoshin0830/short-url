@@ -1,6 +1,7 @@
 // lib/db.ts
 import { sql } from '@vercel/postgres';
 import { ShortenedUrl } from '@/types';
+import * as crypto from 'crypto';
 
 // データベースの初期化
 export async function initializeDatabase(): Promise<void> {
@@ -13,9 +14,70 @@ export async function initializeDatabase(): Promise<void> {
         visits INTEGER DEFAULT 0
       );
     `;
+
+    // パスキー用のテーブルを初期化
+    await sql`
+      CREATE TABLE IF NOT EXISTS passkeys (
+        id SERIAL PRIMARY KEY,
+        passkey_hash TEXT NOT NULL,
+        salt TEXT NOT NULL,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+
+    // デフォルトのパスキーがなければ作成
+    const defaultPasskey = process.env.DEFAULT_PASSKEY || 'admin123';
+    const passkeysExist = await sql`SELECT COUNT(*) FROM passkeys`;
+    
+    if (parseInt(passkeysExist.rows[0].count) === 0) {
+      await createPasskey(defaultPasskey);
+    }
+    
     console.log('データベーステーブルが初期化されました');
   } catch (error) {
     console.error('データベースの初期化に失敗しました:', error);
+  }
+}
+
+// パスキーを作成
+export async function createPasskey(passkey: string): Promise<void> {
+  try {
+    const salt = crypto.randomBytes(16).toString('hex');
+    const hash = hashPasskey(passkey, salt);
+    
+    await sql`
+      INSERT INTO passkeys (passkey_hash, salt)
+      VALUES (${hash}, ${salt});
+    `;
+    
+    console.log('パスキーが作成されました');
+  } catch (error) {
+    console.error('パスキーの作成に失敗しました:', error);
+    throw error;
+  }
+}
+
+// パスキーをハッシュ化
+function hashPasskey(passkey: string, salt: string): string {
+  return crypto.pbkdf2Sync(passkey, salt, 1000, 64, 'sha512').toString('hex');
+}
+
+// パスキーを検証
+export async function verifyPasskey(passkey: string): Promise<boolean> {
+  try {
+    const result = await sql`SELECT * FROM passkeys ORDER BY created_at DESC LIMIT 1`;
+    
+    if (result.rows.length === 0) {
+      return false;
+    }
+    
+    const storedPasskey = result.rows[0];
+    const hash = hashPasskey(passkey, storedPasskey.salt);
+    
+    return hash === storedPasskey.passkey_hash;
+  } catch (error) {
+    console.error('パスキーの検証に失敗しました:', error);
+    return false;
   }
 }
 
@@ -71,5 +133,20 @@ export async function getUrlStats(id: number): Promise<ShortenedUrl | null> {
   } catch (error) {
     console.error('統計データの取得に失敗しました:', error);
     return null;
+  }
+}
+
+// すべてのショートリンクを取得
+export async function getAllUrls(): Promise<ShortenedUrl[]> {
+  try {
+    const result = await sql<ShortenedUrl>`
+      SELECT * FROM shortened_urls
+      ORDER BY created_at DESC;
+    `;
+    
+    return result.rows;
+  } catch (error) {
+    console.error('ショートリンク一覧の取得に失敗しました:', error);
+    return [];
   }
 }

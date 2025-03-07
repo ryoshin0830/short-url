@@ -29,6 +29,14 @@ export default function HomePage() {
               </div>
               <span className="text-xl font-semibold text-gray-800 dark:text-white">.gy</span>
             </div>
+            <div className="flex items-center space-x-4">
+              <a 
+                href="/database" 
+                className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 text-sm font-medium"
+              >
+                データベース
+              </a>
+            </div>
           </nav>
         </div>
       </header>
