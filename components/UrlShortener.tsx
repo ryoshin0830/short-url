@@ -252,14 +252,6 @@ export default function UrlShortener() {
 }`}
                   </pre>
                 </div>
-                
-                <p className="mt-3 text-xs text-gray-600 dark:text-gray-400">
-                  詳細な使用例は
-                  <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline">
-                    APIドキュメント
-                  </a>
-                  をご確認ください。
-                </p>
               </div>
             </motion.div>
           )}
