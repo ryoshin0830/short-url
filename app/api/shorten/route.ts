@@ -10,14 +10,19 @@ interface ShortenRequestBody {
 export async function POST(request: NextRequest): Promise<NextResponse<ApiResponse>> {
   try {
     const body = await request.json() as ShortenRequestBody;
-    const { url } = body;
+    let { url } = body;
     
-    // 基本的なURLバリデーション
-    if (!url || !url.startsWith('http')) {
+    // URLが空でないことを確認
+    if (!url || url.trim() === '') {
       return NextResponse.json(
-        { error: '有効なURLを入力してください' },
+        { error: 'URLを入力してください' },
         { status: 400 }
       );
+    }
+    
+    // URLがhttpまたはhttpsで始まっていなければ、httpsを付与
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = `https://${url}`;
     }
     
     // データベースに保存して数字のIDを取得

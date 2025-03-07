@@ -93,12 +93,12 @@ export default function UrlShortener() {
           >
             <input
               ref={inputRef}
-              type="url"
+              type="text"
               id="url"
               value={url}
               onChange={handleInputChange}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-200"
-              placeholder="https://example.com/long/url/to/shorten"
+              placeholder="example.com または https://example.com"
               required
             />
           </motion.div>
@@ -239,7 +239,7 @@ export default function UrlShortener() {
 {`fetch('https://if.gy/api/shorten', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ url: "https://example.com" })
+  body: JSON.stringify({ url: "example.com" }) // httpsなしでも可能
 })`}
                   </pre>
                 </div>
