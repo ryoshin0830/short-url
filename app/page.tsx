@@ -3,6 +3,7 @@
 // app/page.tsx
 import UrlShortener from '@/components/UrlShortener';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function HomePage() {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -30,12 +31,12 @@ export default function HomePage() {
               <span className="text-xl font-semibold text-gray-800 dark:text-white">.gy</span>
             </div>
             <div className="flex items-center space-x-4">
-              <a 
+              <Link 
                 href="/database" 
                 className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 text-sm font-medium"
               >
                 データベース
-              </a>
+              </Link>
             </div>
           </nav>
         </div>

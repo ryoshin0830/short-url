@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { AuthState } from '@/types';
 import PasskeyForm from '@/components/PasskeyForm';
 import UrlList from '@/components/UrlList';
+import Link from 'next/link';
 
 export default function DatabasePage() {
   const [auth, setAuth] = useState<AuthState>({
@@ -53,12 +54,12 @@ export default function DatabasePage() {
         <div className="container mx-auto px-4">
           <nav className="flex justify-between items-center">
             <div className="flex items-center space-x-1">
-              <a href="/" className="flex items-center space-x-1 text-gray-800 dark:text-white">
+              <Link href="/" className="flex items-center space-x-1 text-gray-800 dark:text-white">
                 <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-lg">if</span>
                 </div>
                 <span className="text-xl font-semibold">.gy</span>
-              </a>
+              </Link>
             </div>
 
             {auth.isAuthenticated && (
