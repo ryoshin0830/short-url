@@ -3,7 +3,6 @@
 // app/page.tsx
 import UrlShortener from '@/components/UrlShortener';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 
 export default function HomePage() {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
