@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate-passkey": "node scripts/migrate-passkey.js",
+    "check-db": "node scripts/check-db.js"
   },
   "dependencies": {
     "@vercel/postgres": "^0.10.0",
