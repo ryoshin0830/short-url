@@ -3,9 +3,9 @@ import { initializeDatabase } from '@/lib/db';
 import '../src/app/globals.css';
 
 export const metadata = {
-  title: 'if.gy | シンプルなURL短縮サービス',
-  description: '長いURLを短く、使いやすく。APIも利用可能なモダンなURL短縮サービス',
-  keywords: 'URL短縮, 短縮URL, URL変換, シンプル, API',
+  title: 'if.gy | プロジェクト紹介サイト',
+  description: '開発したプロジェクトの紹介と、便利なURL短縮機能も提供。ポートフォリオ、チャットボット、コーパスメーカーなど',
+  keywords: 'プロジェクト紹介, ポートフォリオ, チャットボット, CorpusMaker, URL短縮',
 };
 
 export default async function RootLayout({
