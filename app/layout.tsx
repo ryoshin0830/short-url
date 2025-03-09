@@ -3,9 +3,9 @@ import { initializeDatabase } from '@/lib/db';
 import '../src/app/globals.css';
 
 export const metadata = {
-  title: 'if.gy | プロジェクト紹介サイト',
-  description: '開発したプロジェクトの紹介と、便利なURL短縮機能も提供。ポートフォリオ、チャットボット、コーパスメーカーなど',
-  keywords: 'プロジェクト紹介, ポートフォリオ, チャットボット, CorpusMaker, URL短縮',
+  title: 'if.gy | 革新的テクノロジーと言語の融合',
+  description: '言語とAIの力で未来を切り拓くプロジェクト集。京都大学博士課程の梁 震が手がける革新的なデジタルソリューション。',
+  keywords: 'AI, 機械学習, NLP, 言語教育, テクノロジー, プロジェクト紹介, URL短縮',
 };
 
 export default async function RootLayout({

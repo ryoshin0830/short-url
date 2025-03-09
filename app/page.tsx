@@ -70,16 +70,6 @@ export default function HomePage() {
               </motion.button>
               
               <motion.a
-                href="https://github.com/ryoshin0830/if-gy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200"
-                whileHover={{ y: -2 }}
-              >
-                <span className="text-sm font-medium">GitHub</span>
-              </motion.a>
-              
-              <motion.a
                 href="https://about.if.gy"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -97,25 +87,54 @@ export default function HomePage() {
         </div>
       </header>
       
-      <div className="w-full max-w-6xl mx-auto flex flex-col items-center justify-between gap-12 py-12 z-10">
+      <div className="w-full max-w-6xl mx-auto flex flex-col items-center justify-between gap-12 py-16 z-10">
         <div className="w-full text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-4 px-4 py-1.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium"
+          >
+            WELCOME TO IF.GY
+          </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 leading-tight"
+            className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 leading-tight"
           >
-            プロジェクト集
+            <span className="block">テクノロジーで</span>
+            <span className="block">未来を切り拓く</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            私が開発した様々なサービスとアプリケーションをご紹介します。<br />
-            各プロジェクトの詳細は下記のカードをクリックして確認できます。
+            言語とAIの力を融合させた革新的なソリューションで、<br className="hidden md:block" />
+            新たなデジタル体験を創造します
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            <a 
+              href="#projects"
+              className="py-3 px-8 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1"
+            >
+              プロジェクトを見る
+            </a>
+            <button
+              onClick={() => setShowUrlShortener(true)}
+              className="py-3 px-8 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded-lg font-medium shadow-sm hover:shadow transition-all duration-200 transform hover:-translate-y-1"
+            >
+              URL短縮を試す
+            </button>
+          </motion.div>
         </div>
       </div>
       
@@ -146,14 +165,16 @@ export default function HomePage() {
       )}
       
       {/* プロジェクトセクション */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="w-full z-10"
-      >
-        <Projects />
-      </motion.div>
+      <div id="projects">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="w-full z-10"
+        >
+          <Projects />
+        </motion.div>
+      </div>
       
       {/* ヒーローセクション下部のアクションカード */}
       <motion.div
@@ -164,38 +185,38 @@ export default function HomePage() {
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-            <div className="p-6 border-b border-gray-100 dark:border-gray-700">
+            <div className="p-6">
               <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">高品質なプロジェクト</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">実用性と使いやすさを重視した設計で、あなたの課題を解決します。</p>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">革新的なソリューション</h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">最先端の技術と創造的な発想で、従来の枠組みを超える価値を提供します。</p>
             </div>
           </div>
           
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-            <div className="p-6 border-b border-gray-100 dark:border-gray-700">
+            <div className="p-6">
               <div className="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">最新技術の活用</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">最先端の技術を取り入れ、革新的なソリューションを提供します。</p>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">優れた使いやすさ</h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">ユーザー体験を最優先に考え、直感的で簡単に操作できるデザインを追求します。</p>
             </div>
           </div>
           
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-            <div className="p-6 border-b border-gray-100 dark:border-gray-700">
+            <div className="p-6">
               <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">ユーザーフィードバック</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">ユーザーの声を大切にし、継続的な改善を行っています。</p>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">継続的な進化</h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">フィードバックを大切にし、常に改善を重ねることで最高のサービスを提供します。</p>
             </div>
           </div>
         </div>
@@ -204,7 +225,7 @@ export default function HomePage() {
       <footer className="w-full py-12 mt-auto z-10">
         <div className="max-w-5xl mx-auto px-6">
           <div className="border-t border-gray-200 dark:border-gray-700 pt-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <div className="flex items-center space-x-2 mb-4">
                   <div className="h-8 w-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg flex items-center justify-center">
@@ -213,41 +234,12 @@ export default function HomePage() {
                   <span className="text-xl font-semibold text-gray-800 dark:text-white">.gy</span>
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                  高品質なプロジェクトとサービスを提供。<br />
-                  シンプルで使いやすいツールを開発しています。
+                  革新的な技術と創造力で未来を形作るプロジェクト群。<br />
+                  言語とAIの力で、より豊かな体験を提供します。
                 </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   © {currentYear} if.gy. All rights reserved.
                 </p>
-              </div>
-              
-              <div>
-                <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-4">プロジェクト</h3>
-                <ul className="space-y-3">
-                  <li>
-                    <a href="https://about.if.gy" className="text-sm text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
-                      Portfolio
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://chat.if.gy" className="text-sm text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
-                      ChatBot
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://corpusmaker.eastlinker.com" className="text-sm text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
-                      CorpusMaker
-                    </a>
-                  </li>
-                  <li>
-                    <button 
-                      onClick={() => setShowUrlShortener(true)}
-                      className="text-sm text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200"
-                    >
-                      ShortURL
-                    </button>
-                  </li>
-                </ul>
               </div>
               
               <div>
