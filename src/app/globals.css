@@ -1,142 +1,476 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #4f46e5;
-  --primary-light: #6366f1;
-  --primary-dark: #4338ca;
-  --secondary: #3b82f6;
-  --accent: #8b5cf6;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Appleスタイルカラーパレット - より洗練された色合いに調整 */
+  --apple-blue: #0066CC;
+  --apple-blue-light: #0077ED;
+  --apple-blue-dark: #004B96;
+  --apple-gray-50: #F5F5F7;
+  --apple-gray-100: #E8E8ED;
+  --apple-gray-200: #D2D2D7;
+  --apple-gray-300: #BDBDC2;
+  --apple-gray-400: #A1A1A6;
+  --apple-gray-500: #86868B;
+  --apple-gray-600: #6E6E73;
+  --apple-gray-700: #1D1D1F;
+  --apple-gray-800: #121214;
+  --apple-gray-900: #000000;
+  --apple-red: #FF3B30;
+  --apple-orange: #FF9500;
+  --apple-yellow: #FFCC00;
+  --apple-green: #34C759;
+  --apple-indigo: #5E5CE6;
+  --apple-pink: #FF2D55;
+  
+  /* アプリ変数 */
+  --background: #FFFFFF;
+  --foreground: #1D1D1F;
+  --primary: var(--apple-blue);
+  --primary-light: var(--apple-blue-light);
+  --primary-dark: var(--apple-blue-dark);
+  --secondary: var(--apple-indigo);
+  --accent: var(--apple-orange);
+  --success: var(--apple-green);
+  --error: var(--apple-red);
+  
+  /* シャドウ変数 - Apple特有の繊細で柔らかいシャドウ */
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+  
+  /* その他の変数 */
+  --radius-sm: 10px;  
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, var(--font-sans), 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  letter-spacing: -0.015em;
+  line-height: 1.47059;
 }
 
-/* カスタムアニメーション */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+/* Appleスタイルのアニメーション - より滑らかでAppleらしい自然なアニメーション */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes slide-in {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(0); }
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
-@keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+@keyframes scale-in {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
 }
 
-.animate-pulse-subtle {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(0, 102, 204, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(0, 102, 204, 0.5); }
+  100% { box-shadow: 0 0 5px rgba(0, 102, 204, 0.3); }
 }
 
-.animate-spin-slow {
-  animation: spin 3s linear infinite;
+/* アニメーションクラス */
+.animate-fade-in {
+  animation: fade-in 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
 .animate-slide-in {
-  animation: slide-in 0.5s ease-out;
+  animation: slide-in 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-.animate-fade-in {
-  animation: fade-in 0.5s ease-out;
+.animate-scale-in {
+  animation: scale-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-/* カスタムクラス */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }
 
-.text-gradient {
-  background: linear-gradient(to right, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.animate-glow {
+  animation: glow 4s ease-in-out infinite;
 }
 
-.bg-gradient-primary {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+/* スタガー設定 */
+.stagger-1 { animation-delay: 100ms; }
+.stagger-2 { animation-delay: 150ms; }
+.stagger-3 { animation-delay: 200ms; }
+.stagger-4 { animation-delay: 250ms; }
+.stagger-5 { animation-delay: 300ms; }
+
+/* Appleスタイルのコンポーネント */
+.card {
+  background-color: var(--background);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
 
-/* レスポンシブ用のフィックス */
-.mobile-padding {
-  padding: 1rem;
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
 }
 
-@media (min-width: 768px) {
-  .mobile-padding {
-    padding: 0;
-  }
+/* ボタン - Appleの鮮明でスタイリッシュなスタイル */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.8rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-full);
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: -0.01em;
+  border: none;
+  outline: none;
 }
 
-/* スクロールバーのカスタマイズ */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 102, 204, 0.2);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  background-color: var(--primary-dark);
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--foreground);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.btn-outline:hover {
+  background-color: rgba(0, 102, 204, 0.05);
+  transform: translateY(-1px);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+  background-color: rgba(0, 102, 204, 0.1);
+}
+
+/* チップ/タグ - Appleスタイルの角丸デザイン */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.8rem;
+  background-color: var(--apple-gray-100);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.chip-primary {
+  background-color: rgba(0, 102, 204, 0.1);
+  color: var(--primary);
+}
+
+.chip-secondary {
+  background-color: rgba(94, 92, 230, 0.1);
+  color: var(--secondary);
+}
+
+.chip-accent {
+  background-color: rgba(255, 149, 0, 0.1);
+  color: var(--accent);
+}
+
+.chip-success {
+  background-color: rgba(52, 199, 89, 0.1);
+  color: var(--success);
+}
+
+/* スクロールバー - Appleスタイルのミニマル */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  background: var(--apple-gray-300);
+  border-radius: var(--radius-full);
+  border: 2px solid white;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--apple-gray-400);
 }
 
-/* ダークモード用スクロールバー */
-@media (prefers-color-scheme: dark) {
-  ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+/* フォーム要素 - Appleスタイルのクリーンなフォーム */
+input, textarea, select {
+  border: 1px solid var(--apple-gray-200);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  line-height: 1.2;
+  transition: all 0.2s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.02);
+  width: 100%;
+  color: var(--foreground);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  -webkit-appearance: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.15);
+}
+
+/* セクション設定 */
+.section {
+  padding: 3rem 1.5rem;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 5rem 2rem;
   }
-  
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+}
+
+.container-fluid {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-fluid {
+    padding-right: 2rem;
+    padding-left: 2rem;
   }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
+}
+
+/* エレベーション (影) */
+.elevation-1 {
+  box-shadow: var(--shadow-sm);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.elevation-2 {
+  box-shadow: var(--shadow-md);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.elevation-3 {
+  box-shadow: var(--shadow-lg);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* ガラスモーフィズム効果 */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.glass-dark {
+  background: rgba(29, 29, 31, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(55, 65, 81, 0.3);
+  color: white;
+}
+
+/* グラデーション */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+}
+
+.gradient-cool {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.gradient-warm {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+}
+
+/* ホバーアニメーション */
+.hover-lift {
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* テキストグラデーション */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Apple特有のオーバーレイカード */
+.overlay-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Apple風のナビゲーション */
+.apple-nav {
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+.apple-nav:hover {
+  color: var(--primary);
+}
+
+/* Apple風のイメージカード */
+.image-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  transform-origin: center bottom;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.image-card:hover {
+  transform: scale(1.02) translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Apple風のリスト */
+.apple-list {
+  list-style: none;
+  padding: 0;
+}
+
+.apple-list li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--apple-gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.apple-list li:last-child {
+  border-bottom: none;
+}
+
+/* Appleスタイルのアクセント分割線 */
+.accent-divider {
+  height: 1px;
+  background: linear-gradient(90deg, var(--primary) 0%, transparent 100%);
+  margin: 2rem 0;
+  width: 50%;
+}
+
+/* トグル/スイッチ - Apple風 */
+.apple-toggle {
+  width: 3.5rem;
+  height: 2rem;
+  background-color: var(--apple-gray-300);
+  border-radius: var(--radius-full);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+
+.apple-toggle::after {
+  content: '';
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.apple-toggle.active {
+  background-color: var(--success);
+}
+
+.apple-toggle.active::after {
+  transform: translateX(1.5rem);
 }
