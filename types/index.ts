@@ -3,12 +3,14 @@
 export interface ShortenedUrl {
     id: number;
     original_url: string;
+    custom_path?: string | null;
     created_at: Date;
     visits: number;
   }
   
   export interface ApiResponse {
     shortUrl?: string;
+    customPath?: string;
     error?: string;
   }
 

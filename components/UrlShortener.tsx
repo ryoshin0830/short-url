@@ -7,11 +7,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function UrlShortener() {
   const [url, setUrl] = useState<string>('');
+  const [customPath, setCustomPath] = useState<string>('');
   const [shortUrl, setShortUrl] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [showApiInfo, setShowApiInfo] = useState<boolean>(false);
+  const [showCustomOptions, setShowCustomOptions] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   
   useEffect(() => {
@@ -28,12 +30,19 @@ export default function UrlShortener() {
     setIsCopied(false);
     
     try {
+      const payload: { url: string; customPath?: string } = { url };
+      
+      // カスタムパスが入力されている場合のみ追加
+      if (showCustomOptions && customPath.trim() !== '') {
+        payload.customPath = customPath.trim();
+      }
+      
       const response = await fetch('/api/shorten', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify(payload),
       });
       
       const data = await response.json() as ApiResponse;
@@ -58,6 +67,14 @@ export default function UrlShortener() {
   
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
+  };
+  
+  const handleCustomPathChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCustomPath(e.target.value);
+  };
+  
+  const toggleCustomOptions = () => {
+    setShowCustomOptions(!showCustomOptions);
   };
   
   const handleCopyClick = () => {
@@ -103,6 +120,52 @@ export default function UrlShortener() {
             />
           </motion.div>
         </div>
+        
+        <div className="flex items-center pt-2">
+          <button 
+            type="button" 
+            onClick={toggleCustomOptions}
+            className="text-blue-600 dark:text-blue-400 text-sm flex items-center focus:outline-none hover:underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 mr-1 transition-transform duration-200 ${showCustomOptions ? 'rotate-90' : ''}`} viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+            </svg>
+            カスタムURL設定
+          </button>
+        </div>
+        
+        <AnimatePresence>
+          {showCustomOptions && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="overflow-hidden mt-4"
+            >
+              <div className="border p-4 rounded-lg border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/30">
+                <label htmlFor="customPath" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  カスタムパス（オプション）
+                </label>
+                <div className="flex">
+                  <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-sm">
+                    https://if.gy/
+                  </span>
+                  <input
+                    type="text"
+                    id="customPath"
+                    value={customPath}
+                    onChange={handleCustomPathChange}
+                    className="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md focus:ring-blue-500 focus:border-blue-500 border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                    placeholder="my-custom-link"
+                  />
+                </div>
+                <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                  英数字、ハイフン、アンダースコアのみ使用可能（3〜30文字）
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         
         <motion.button
           type="submit"
@@ -239,7 +302,10 @@ export default function UrlShortener() {
 {`fetch('https://if.gy/api/shorten', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ url: "example.com" }) // httpsなしでも可能
+  body: JSON.stringify({ 
+    url: "example.com", // httpsなしでも可能
+    customPath: "my-custom-path" // オプション
+  })
 })`}
                   </pre>
                 </div>

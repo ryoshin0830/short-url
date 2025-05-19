@@ -14,7 +14,13 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   // データベースの初期化（アプリケーション起動時に一度実行）
-  await initializeDatabase();
+  try {
+    await initializeDatabase();
+  } catch (error) {
+    // エラーが発生してもアプリケーションの起動を妨げないようにログ出力のみ行う
+    console.error('データベース初期化エラー:', error);
+    // 初期化に失敗してもアプリケーションは続行する
+  }
   
   return (
     <html lang="ja">
