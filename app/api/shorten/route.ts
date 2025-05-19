@@ -11,7 +11,8 @@ interface ShortenRequestBody {
 export async function POST(request: NextRequest): Promise<NextResponse<ApiResponse>> {
   try {
     const body = await request.json() as ShortenRequestBody;
-    let { url, customPath } = body;
+    let { url } = body;
+    const { customPath } = body;
     
     // URLが空でないことを確認
     if (!url || url.trim() === '') {

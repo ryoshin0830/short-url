@@ -196,31 +196,33 @@ export default function UrlShortener() {
             <h3 className="text-base font-medium text-gray-700 dark:text-gray-200">短縮URL 生成完了</h3>
           </div>
           
-          <div className="relative url-card">
-            <input
-              type="text"
-              value={shortUrl}
-              readOnly
-              className="w-full pl-4 pr-16 py-3 border-2 border-green-500 dark:border-green-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white focus:outline-none text-md font-medium custom-url-input success"
-            />
-            <button
-              onClick={handleCopyClick}
-              className="absolute right-2 top-2 p-2 rounded-md bg-green-500 hover:bg-green-600 text-white transition-colors duration-200 focus:outline-none button-effect"
-            >
-              {isCopied ? (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 animate-pulse-subtle" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
-                  <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5zM15 11h2a1 1 0 110 2h-2v-2z" />
-                </svg>
-              )}
-            </button>
+          <div className="mb-2">
+            <div className="flex w-full rounded-lg overflow-hidden border-2 border-green-500 dark:border-green-600">
+              <input
+                type="text"
+                value={shortUrl}
+                readOnly
+                className="flex-1 pl-4 py-3 bg-white dark:bg-gray-700 dark:text-white focus:outline-none text-md font-medium custom-url-input success border-0"
+              />
+              <button
+                onClick={handleCopyClick}
+                className="flex-shrink-0 w-12 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white transition-colors duration-200 focus:outline-none button-effect"
+              >
+                {isCopied ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 animate-pulse-subtle" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
+                    <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5zM15 11h2a1 1 0 110 2h-2v-2z" />
+                  </svg>
+                )}
+              </button>
+            </div>
             
             {isCopied && (
-              <div className="tooltip absolute -top-8 right-0 bg-black text-white text-xs rounded py-1 px-2 animate-fade-in">
+              <div className="mt-1 text-center text-green-600 dark:text-green-400 text-xs py-1 animate-fade-in">
                 コピーしました！
               </div>
             )}
