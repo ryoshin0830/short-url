@@ -74,9 +74,6 @@ export default function HomePage() {
               © {currentYear} if.gy. All rights reserved.
             </p>
             <div className="flex space-x-4 mt-4 md:mt-0 items-center">
-              <a href="https://about.if.gy" className="text-sm text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 mr-2">
-                開発者について
-              </a>
               <a href="https://github.com/ryoshin0830" className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
                 <span className="sr-only">GitHub</span>
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
