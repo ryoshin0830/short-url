@@ -50,9 +50,9 @@ export async function POST(request: NextRequest): Promise<NextResponse<ApiRespon
       }
       
       // 長さ制限を設定
-      if (customPath.length < 3 || customPath.length > 30) {
+      if (customPath.length < 1 || customPath.length > 30) {
         return NextResponse.json(
-          { error: 'カスタムパスは3〜30文字にしてください' },
+          { error: 'カスタムパスは1〜30文字にしてください' },
           { status: 400 }
         );
       }

@@ -105,16 +105,23 @@ export default function UrlShortener() {
           <label htmlFor="url" className="block text-base font-medium text-gray-700 dark:text-gray-200 mb-2">
             URL
           </label>
-          <input
-            ref={inputRef}
-            type="text"
-            id="url"
-            value={url}
-            onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white custom-url-input"
-            placeholder="example.com または https://example.com"
-            required
-          />
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <input
+              ref={inputRef}
+              type="text"
+              id="url"
+              value={url}
+              onChange={handleInputChange}
+              className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white shadow-sm custom-url-input"
+              placeholder="example.com または https://example.com"
+              required
+            />
+          </div>
         </div>
         
         <div className="mt-3">
@@ -137,7 +144,7 @@ export default function UrlShortener() {
                 カスタムパス（オプション）
               </label>
               
-              <div className="input-group flex mb-2 items-center bg-white dark:bg-gray-700 rounded-md border border-gray-300 dark:border-gray-600 overflow-hidden">
+              <div className="input-group flex mb-2 items-center bg-gray-50 dark:bg-gray-700 rounded-md border-2 border-gray-300 dark:border-gray-600 overflow-hidden shadow-sm">
                 <div className="flex-shrink-0 bg-gray-100 dark:bg-gray-800 border-r border-gray-300 dark:border-gray-600 px-3 py-2 text-gray-500 dark:text-gray-400 text-sm select-none">
                   https://if.gy/
                 </div>
@@ -155,7 +162,7 @@ export default function UrlShortener() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                 </svg>
-                英数字、ハイフン、アンダースコアのみ使用可能（3〜30文字）
+                英数字、ハイフン、アンダースコアのみ使用可能（1〜30文字）
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-amber-500" viewBox="0 0 20 20" fill="currentColor">
@@ -290,6 +297,44 @@ export default function UrlShortener() {
           </div>
         )}
       </div>
+      
+      <style jsx>{`
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+        
+        /* URLテキストボックスの強調スタイル */
+        .custom-url-input {
+          transition: all 0.2s ease-in-out;
+        }
+        .custom-url-input:hover {
+          border-color: #4f85e5;
+        }
+        /* 入力中のホバー効果を消さない */
+        .custom-url-input:focus:hover {
+          border-color: #3b82f6;
+        }
+      `}</style>
     </div>
   );
 }
