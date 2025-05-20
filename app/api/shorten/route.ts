@@ -32,6 +32,14 @@ export async function POST(request: NextRequest): Promise<NextResponse<ApiRespon
         );
       }
       
+      // 数字のみのカスタムパスを禁止（IDとの競合を防ぐため）
+      if (/^\d+$/.test(customPath)) {
+        return NextResponse.json(
+          { error: '数字のみのカスタムパスは使用できません' },
+          { status: 400 }
+        );
+      }
+      
       // 予約語をチェック（例：api, about などの既存パス）
       const reservedPaths = ['api', 'about', 'database', 'admin', 'login', 'register', 'settings'];
       if (reservedPaths.includes(customPath.toLowerCase())) {
