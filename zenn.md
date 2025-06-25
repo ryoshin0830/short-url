@@ -1,5 +1,5 @@
 ---
-title: "人生も URL も短い方がいい！Modern な URL 短縮サービス「if.gy」を作ってみた"
+title: "人生も URL も短い方がいい！Modern な URL 短縮サービス「link.ryosh.in」を作ってみた"
 emoji: "🔗"
 type: "tech"
 topics: ["nextjs", "typescript", "vercel", "postgres", "urlshortener"]
@@ -30,11 +30,11 @@ https://www.amazon.co.jp/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%
 
 というわけで、**自分で最高のURL短縮サービスを作ることにしました**！
 
-# 「if.gy」の誕生！🎉
+# 「link.ryosh.in」の誕生！🎉
 
-**「if.gy」** - 名前の由来は「**if**」（条件分岐）と「**.gy**」（ドメイン）の組み合わせです。プログラマーなら「if」に反応しますよね？（...しませんか？）
+**「link.ryosh.in」** - 名前の由来は「link」（リンク）と「ryosh.in」（私のドメイン）の組み合わせです。シンプルでわかりやすいでしょう？
 
-「ドメインはどうやって選んだの？」って？...安かったからです。正直に言います。
+「ドメインはどうやって選んだの？」って？...私のメインドメインのサブドメインとして使いたかったからです。
 
 ## 技術スタックは超モダン 🚀
 
@@ -64,7 +64,7 @@ export async function createShortUrl(originalUrl: string): Promise<number> {
 }
 ```
 
-これだけです！シンプルでしょう？データベースに保存したらIDが返ってくるので、そのIDをURLの末尾に使います。「https://if.gy/123」みたいな感じです。
+これだけです！シンプルでしょう？データベースに保存したらIDが返ってくるので、そのIDをURLの末尾に使います。「https://link.ryosh.in/123」みたいな感じです。
 
 なぜもっと複雑なアルゴリズムを使わないのか？簡単です：**KISSの原則**（Keep It Simple, Stupid）を大事にしているからです。プログラミングは複雑にすればいいというものではありません...（ツッコミ待ち）
 
@@ -111,7 +111,7 @@ export async function getOriginalUrl(id: number): Promise<string | null> {
 「でもURLを短縮するたびにWebサイトを開くのは面倒くさい...」というプログラマーの方のために、APIも提供しています：
 
 ```bash
-curl -X POST https://if.gy/api/shorten \
+curl -X POST https://link.ryosh.in/api/shorten \
   -H "Content-Type: application/json" \
   -d '{"url":"https://example.com/long/url"}'
 ```
@@ -120,7 +120,7 @@ curl -X POST https://if.gy/api/shorten \
 
 ```json
 {
-  "shortUrl": "https://if.gy/42"
+  "shortUrl": "https://link.ryosh.in/42"
 }
 ```
 
@@ -128,7 +128,7 @@ curl -X POST https://if.gy/api/shorten \
 
 # わかった、使ってみたい！どうすればいい？ 🤩
 
-「if.gy」はすでに公開しています！ブラウザで [https://if.gy](https://if.gy) にアクセスしてください。
+「link.ryosh.in」はすでに公開しています！ブラウザで [https://link.ryosh.in](https://link.ryosh.in) にアクセスしてください。
 
 ...えっ？「ドメインが見つかりません」って出る？そりゃそうです。この記事はプロジェクトについて書いたもので、実際にサービスを公開しているわけではありません（笑）。
 

@@ -25,9 +25,9 @@ export default function HomePage() {
           <nav className="flex justify-between items-center">
             <div className="flex items-center space-x-1">
               <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">if</span>
+                <span className="text-white font-bold text-lg">link</span>
               </div>
-              <span className="text-xl font-semibold text-gray-800 dark:text-white">.gy</span>
+              <span className="text-xl font-semibold text-gray-800 dark:text-white">.ryosh.in</span>
             </div>
             <div className="flex items-center space-x-4">
               {/* データベースボタンを削除 */}
@@ -71,7 +71,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              © {currentYear} if.gy. All rights reserved.
+              © {currentYear} link.ryosh.in. All rights reserved.
             </p>
             <div className="flex space-x-4 mt-4 md:mt-0 items-center">
               <a href="https://github.com/ryoshin0830" className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">

@@ -146,7 +146,7 @@ export default function UrlShortener() {
               
               <div className="input-group flex mb-2 items-center bg-gray-50 dark:bg-gray-700 rounded-md border-2 border-gray-300 dark:border-gray-600 overflow-hidden shadow-sm">
                 <div className="flex-shrink-0 bg-gray-100 dark:bg-gray-800 border-r border-gray-300 dark:border-gray-600 px-3 py-2 text-gray-500 dark:text-gray-400 text-sm select-none">
-                  https://if.gy/
+                  https://link.ryosh.in/
                 </div>
                 <input
                   type="text"
@@ -274,7 +274,7 @@ export default function UrlShortener() {
               <div className="mb-3">
                 <p className="text-gray-600 dark:text-gray-400 mb-1">リクエスト:</p>
                 <pre className="bg-gray-800 text-green-400 p-3 rounded-md overflow-x-auto text-xs">
-{`fetch('https://if.gy/api/shorten', {
+{`fetch('https://link.ryosh.in/api/shorten', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ 
@@ -289,7 +289,7 @@ export default function UrlShortener() {
                 <p className="text-gray-600 dark:text-gray-400 mb-1">レスポンス:</p>
                 <pre className="bg-gray-800 text-blue-400 p-3 rounded-md overflow-x-auto text-xs">
 {`{
-  "shortUrl": "https://if.gy/abc123"
+  "shortUrl": "https://link.ryosh.in/abc123"
 }`}
                 </pre>
               </div>

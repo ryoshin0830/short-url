@@ -68,8 +68,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<ApiRespon
     
     // ショートリンクを生成
     const shortUrl = result.customPath 
-      ? `https://if.gy/${result.customPath}` 
-      : `https://if.gy/${result.id}`;
+      ? `https://link.ryosh.in/${result.customPath}` 
+      : `https://link.ryosh.in/${result.id}`;
     
     return NextResponse.json({ 
       shortUrl,

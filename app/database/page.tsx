@@ -56,9 +56,9 @@ export default function DatabasePage() {
             <div className="flex items-center space-x-1">
               <Link href="/" className="flex items-center space-x-1 text-gray-800 dark:text-white">
                 <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">if</span>
+                  <span className="text-white font-bold text-lg">link</span>
                 </div>
-                <span className="text-xl font-semibold">.gy</span>
+                <span className="text-xl font-semibold">.ryosh.in</span>
               </Link>
             </div>
 
@@ -86,7 +86,7 @@ export default function DatabasePage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              © {new Date().getFullYear()} if.gy. All rights reserved.
+              © {new Date().getFullYear()} link.ryosh.in. All rights reserved.
             </p>
           </div>
         </div>

@@ -129,12 +129,12 @@ export default function UrlList({ token }: UrlListProps) {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                   <a 
-                    href={`https://if.gy/${url.custom_path || url.id}`} 
+                    href={`https://link.ryosh.in/${url.custom_path || url.id}`} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 hover:underline"
                   >
-                    https://if.gy/{url.custom_path || url.id}
+                    https://link.ryosh.in/{url.custom_path || url.id}
                     {url.custom_path && (
                       <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100">
                         カスタム

@@ -1,4 +1,4 @@
-# if-gy - URL短縮サービス
+# link.ryosh.in - URL短縮サービス
 
 このプロジェクトは、長いURLを短いURLに変換するシンプルなURL短縮サービスです。Next.js 15とVercel PostgreSQLデータベースを活用し、モダンなUI/UXを提供します。
 
@@ -130,7 +130,7 @@ vercel --prod
 ### データベースの設定
 
 1. Vercelダッシュボード (https://vercel.com/dashboard) にアクセス
-2. プロジェクト「if-gy」を選択
+2. プロジェクト「link.ryosh.in」を選択
 3. 「Storage」タブを選択
 4. 「Connect Database」→「PostgreSQL」→「Neon」を選択
 5. 指示に従ってデータベースを作成
@@ -164,7 +164,7 @@ export default async function RedirectPage({ params }) {
 
 ## API仕様
 
-if.gyではREST APIを提供しており、外部アプリケーションからURL短縮機能を利用することができます。
+link.ryosh.inではREST APIを提供しており、外部アプリケーションからURL短縮機能を利用することができます。
 
 ### エンドポイント
 
@@ -186,7 +186,7 @@ POST /api/shorten
 
 ```json
 {
-  "shortUrl": "https://if-mnxrm6no4-fyuneru0830s-projects.vercel.app/123"
+  "shortUrl": "https://link.ryosh.in/123"
 }
 ```
 
@@ -211,7 +211,7 @@ POST /api/shorten
 #### cURLでの使用例
 
 ```bash
-curl -X POST https://if.gy/api/shorten \
+curl -X POST https://link.ryosh.in/api/shorten \
   -H "Content-Type: application/json" \
   -d '{"url":"https://example.com/long/url"}'
 ```
@@ -221,7 +221,7 @@ curl -X POST https://if.gy/api/shorten \
 ```javascript
 async function shortenUrl(url) {
   try {
-    const response = await fetch('https://if.gy/api/shorten', {
+    const response = await fetch('https://link.ryosh.in/api/shorten', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -259,7 +259,7 @@ import requests
 def shorten_url(url):
     try:
         response = requests.post(
-            'https://if.gy/api/shorten',
+            'https://link.ryosh.in/api/shorten',
             json={'url': url}
         )
         response.raise_for_status()
@@ -307,7 +307,7 @@ if-gy/
 ## デモ
 
 デプロイされたアプリケーションは以下のURLでアクセスできます:
-- [https://if.gy](https://if.gy)
+- [https://link.ryosh.in](https://link.ryosh.in)
 
 ## ライセンス
 

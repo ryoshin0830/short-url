@@ -3,7 +3,7 @@ import { initializeDatabase } from '@/lib/db';
 import '../src/app/globals.css';
 
 export const metadata = {
-  title: 'if.gy | シンプルなURL短縮サービス',
+  title: 'link.ryosh.in | シンプルなURL短縮サービス',
   description: '長いURLを短く、使いやすく。APIも利用可能なモダンなURL短縮サービス',
   keywords: 'URL短縮, 短縮URL, URL変換, シンプル, API',
 };
