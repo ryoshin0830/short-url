@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Logo from '@/components/Logo';
 
 export default function RedirectComponent({ originalUrl }: { originalUrl: string }) {
   const [progress, setProgress] = useState(0);
@@ -45,12 +46,7 @@ export default function RedirectComponent({ originalUrl }: { originalUrl: string
       <div className="w-full max-w-md bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 animate-fade-in">
         {/* ヘッダー部分 */}
         <div className="flex justify-between items-center p-5 border-b border-gray-100 dark:border-gray-700">
-          <div className="flex items-center space-x-2">
-            <div className="h-8 w-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-md flex items-center justify-center">
-              <span className="text-white font-bold text-lg">link</span>
-            </div>
-            <div className="font-semibold text-xl text-gray-800 dark:text-white">.ryosh.in</div>
-          </div>
+          <Logo />
           
           <div className="w-8 h-8 animate-pulse rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600 dark:text-blue-400" viewBox="0 0 20 20" fill="currentColor">

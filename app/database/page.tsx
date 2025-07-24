@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { AuthState } from '@/types';
 import PasskeyForm from '@/components/PasskeyForm';
 import UrlList from '@/components/UrlList';
+import Logo from '@/components/Logo';
 import Link from 'next/link';
 
 export default function DatabasePage() {
@@ -53,14 +54,9 @@ export default function DatabasePage() {
       <header className="w-full py-4 z-10">
         <div className="container mx-auto px-4">
           <nav className="flex justify-between items-center">
-            <div className="flex items-center space-x-1">
-              <Link href="/" className="flex items-center space-x-1 text-gray-800 dark:text-white">
-                <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">link</span>
-                </div>
-                <span className="text-xl font-semibold">.ryosh.in</span>
-              </Link>
-            </div>
+            <Link href="/">
+              <Logo />
+            </Link>
 
             {auth.isAuthenticated && (
               <button
