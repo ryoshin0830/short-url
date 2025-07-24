@@ -47,9 +47,9 @@ export default function RedirectComponent({ originalUrl }: { originalUrl: string
         <div className="flex justify-between items-center p-5 border-b border-gray-100 dark:border-gray-700">
           <div className="flex items-center space-x-2">
             <div className="h-8 w-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-md flex items-center justify-center">
-              <span className="text-white font-bold text-lg">if</span>
+              <span className="text-white font-bold text-lg">link</span>
             </div>
-            <div className="font-semibold text-xl text-gray-800 dark:text-white">.gy</div>
+            <div className="font-semibold text-xl text-gray-800 dark:text-white">.ryosh.in</div>
           </div>
           
           <div className="w-8 h-8 animate-pulse rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
