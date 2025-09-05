@@ -2,7 +2,14 @@
 // 環境変数を読み込む
 require('dotenv').config({ path: '.env.local' });
 
-const { sql } = require('@vercel/postgres');
+const { createPool } = require('@vercel/postgres');
+
+// DATABASE_URLを使用してプールを作成
+const pool = createPool({
+  connectionString: process.env.DATABASE_URL
+});
+
+const { sql } = pool;
 
 async function checkDatabase() {
   try {
