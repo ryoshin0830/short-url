@@ -1,13 +1,14 @@
 // lib/db.ts
-import { createPool } from '@vercel/postgres';
+import { sql } from '@vercel/postgres';
 import { ShortenedUrl } from '@/types';
 
-// DATABASE_URLを使用してプールを作成
-const pool = createPool({
-  connectionString: process.env.DATABASE_URL
-});
+// DATABASE_URLが設定されていることを確認
+if (!process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL environment variable is not set');
+}
 
-const { sql } = pool;
+// POSTGRES_URLをDATABASE_URLに設定（@vercel/postgresが使用するため）
+process.env.POSTGRES_URL = process.env.DATABASE_URL;
 
 // データベースの初期化
 export async function initializeDatabase(): Promise<void> {
