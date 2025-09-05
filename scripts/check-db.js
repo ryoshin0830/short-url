@@ -2,20 +2,20 @@
 // 環境変数を読み込む
 require('dotenv').config({ path: '.env.local' });
 
-const { createPool } = require('@vercel/postgres');
+const { sql } = require('@vercel/postgres');
 
-// DATABASE_URLを使用してプールを作成
-const pool = createPool({
-  connectionString: process.env.DATABASE_URL
-});
+// DATABASE_URLが設定されていることを確認
+if (!process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL environment variable is not set');
+}
 
-const { sql } = pool;
+// POSTGRES_URLをDATABASE_URLに設定（@vercel/postgresが使用するため）
+process.env.POSTGRES_URL = process.env.DATABASE_URL;
 
 async function checkDatabase() {
   try {
     console.log('🔄 データベース接続のテスト中...');
     console.log('DATABASE_URL:', process.env.DATABASE_URL?.substring(0, 30) + '...');
-    console.log('POSTGRES_URL:', process.env.POSTGRES_URL?.substring(0, 30) + '...');
     
     // 接続テスト
     const testResult = await sql`SELECT 1 as test`;
