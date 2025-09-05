@@ -1,6 +1,13 @@
 // lib/db.ts
-import { sql } from '@vercel/postgres';
+import { createPool } from '@vercel/postgres';
 import { ShortenedUrl } from '@/types';
+
+// DATABASE_URLを使用してプールを作成
+const pool = createPool({
+  connectionString: process.env.DATABASE_URL
+});
+
+const { sql } = pool;
 
 // データベースの初期化
 export async function initializeDatabase(): Promise<void> {
